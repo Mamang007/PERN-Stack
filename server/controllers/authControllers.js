@@ -1,5 +1,4 @@
 const pool = require("../db");
-const queries = require("../models/authModel");
 const { hash } = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
 
