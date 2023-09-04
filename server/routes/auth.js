@@ -10,6 +10,6 @@ router.get("/get-users", authController.getUsers);
 router.post("/register", registerValidation, validationMiddleware, authController.register);
 router.post("/login", loginValidation, validationMiddleware, authController.login);
 router.get("/protected", userAuth, authController.protected);
-router.get("/logout", userAuth, authController.logout);
+router.get("/logout", authController.logout);
 
 module.exports = router;
