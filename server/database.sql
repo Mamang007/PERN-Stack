@@ -14,6 +14,7 @@ INSERT INTO customers (name, email, age, dob) VALUES ('Joe', 'joe@mail.com', 50,
 INSERT INTO customers (name, email, age, dob) VALUES ('Karin', 'karina@mail.com', 32, '1991-04-13');
 INSERT INTO customers (name, email, age, dob) VALUES ('Mamang', 'mamang@mail.com', 46, '1976-09-08');
 INSERT INTO customers (name, email, age, dob) VALUES ('Asep', 'asep@mail.com', 38, '1985-02-17');
+INSERT INTO customers (name, email, age, dob) VALUES ('Makmur', 'makmur@mail.com', 33, '1990-02-17');
 
 -- Create Table Users
 CREATE TABLE users
@@ -24,6 +25,3 @@ CREATE TABLE users
     created_at DATE DEFAULT CURRENT_DATE
 );
 
--- Insert Data Users
-INSERT INTO users (email, password) VALUES ('mamat@mail.com', 'mamat123');
-INSERT INTO users (email, password) VALUES ('abdan@mail.com', 'abdan123');

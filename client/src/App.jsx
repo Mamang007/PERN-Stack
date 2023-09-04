@@ -1,41 +1,39 @@
-import { useState, useEffect } from "react";
-import "./App.css";
-import axios from "axios";
+import { BrowserRouter, Navigate, Routes, Route, Outlet } from "react-router-dom";
+import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import { useSnapshot } from "valtio";
+import state from "./store";
 
-function App() {
-  const [data, setData] = useState([]);
+const PrivateRoute = () => {
+  const snap = useSnapshot(state);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:9000/products")
-      .then((res) => res.data)
-      .then((data) => setData(data));
-  }, []);
+  return <>{snap.isAuth ? <Outlet /> : <Navigate to="/login" />}</>;
+};
 
+const RestrictedRoutes = () => {
+  const snap = useSnapshot(state);
+
+  return <>{!snap.isAuth ? <Outlet /> : <Navigate to="/dashboard" />}</>;
+};
+
+const App = () => {
   return (
-    <div className="container my-5" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item) => (
-            <tr key={item.product_id}>
-              <td>{item.product_id}</td>
-              <td>{item.name}</td>
-              <td>{item.price}</td>
-              <td>{item.description}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+
+        <Route element={<PrivateRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+        <Route element={<RestrictedRoutes />}>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
