@@ -1,9 +1,10 @@
 const pool = require("../db");
+const queries = require("../models/usersModel");
 const { hash } = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
 
 const getUsers = async (req, res) => {
-  const response = await pool.query("SELECT id, email, created_at FROM users");
+  const response = await pool.query(queries.getUsers);
   try {
     return res.status(200).json({
       success: true,
@@ -21,7 +22,7 @@ const register = async (req, res) => {
   try {
     const hashedPassword = await hash(password, 10);
 
-    await pool.query("INSERT INTO users(email, password) VALUES ($1, $2)", [email, hashedPassword]);
+    await pool.query(queries.register, [email, hashedPassword]);
     return res.status(201).json({
       success: true,
       message: "Users created successfully!",

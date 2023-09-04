@@ -5,6 +5,7 @@ const passport = require("passport");
 const cors = require("cors");
 const costumerRoutes = require("./routes/costumers");
 const authRoutes = require("./routes/auth");
+const { userAuth } = require("./middlewares/auth-middleware");
 
 require("dotenv").config("/.env");
 const PORT = process.env.PORT;
@@ -22,7 +23,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.use("/api/v1/customers", costumerRoutes);
+app.use("/api/v1/customers", userAuth, costumerRoutes);
 app.use("/auth", authRoutes);
 
 app.listen(PORT, () => {
