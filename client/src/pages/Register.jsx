@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Layouts from "../components/Layouts";
 import { onRegistration } from "../api/authApi";
+import styles from "./index.module.css";
 
 const Register = () => {
   const [values, setValues] = useState({
@@ -20,12 +21,11 @@ const Register = () => {
     try {
       const { data } = await onRegistration(values);
 
-      console.log(data.message);
+      setSuccess(data.message);
       setError("");
       setValues({ email: "", password: "" });
     } catch (error) {
       setError(error.response.data.errors[0].msg);
-      console.log(error.response.data.errors[0].msg);
       setSuccess("");
     }
   };
@@ -33,24 +33,19 @@ const Register = () => {
   return (
     <Layouts>
       <form onSubmit={(e) => onSubmit(e)}>
-        <h1>Register</h1>
-        <div>
-          <label htmlFor="email">Email Address :</label>
+        <h1>REGISTER</h1>
+        <div className={styles.input}>
+          <label htmlFor="email">Email</label>
           <input onChange={(e) => onChange(e)} type="email" id="email" name="email" value={values.email} placeholder="Your Email Here..." required />
         </div>
-        <div>
-          <label htmlFor="password">Password :</label>
+        <div className={styles.input}>
+          <label htmlFor="password">Password</label>
           <input onChange={(e) => onChange(e)} type="password" id="password" name="password" value={values.password} placeholder="Your Password Here..." required />
         </div>
-
-        <div>
-          <p>{error}</p>
+        <div className={styles.alert}>
+          {error !== "" ? <p>{error}</p> : <p>{success}</p>}
+          <button type="submit">Submit</button>
         </div>
-        <div>
-          <p>{success}</p>
-        </div>
-
-        <button type="submit">Submit</button>
       </form>
     </Layouts>
   );

@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useSnapshot } from "valtio";
 import state from "../store";
 import { onLogout } from "../api/authApi";
+import styles from "./index.module.css";
 
 const Navbar = () => {
   const snap = useSnapshot(state);
@@ -19,7 +20,7 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div style={{ display: "flex", justifyContent: "space-between", padding: "10px" }}>
+      <div className={styles.navbar}>
         <div>
           <NavLink to="/">
             <h2>Home</h2>

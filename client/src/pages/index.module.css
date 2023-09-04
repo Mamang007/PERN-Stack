@@ -1,0 +1,92 @@
+h1 {
+  text-align: center;
+}
+
+form {
+  height: 70%;
+  width: 50%;
+  border: black;
+  border-style: solid;
+  border-radius: 15px;
+  padding: 30px;
+  background-color: aqua;
+}
+
+form > div.input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  margin: 10px;
+  margin-top: 20px;
+}
+
+form > label {
+  display: flex;
+}
+
+form > div > input {
+  width: 50%;
+  border-radius: 6px;
+  padding: 7px;
+  margin-top: 5px;
+  background-color: bisque;
+}
+
+.alert {
+  position: ;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.alert > p {
+  left: 130px;
+  text-align: center;
+}
+
+.alert > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: darkorange;
+  margin: 40px auto 0 auto;
+}
+
+.dashboard {
+  height: 70%;
+  width: 80%;
+  border: black;
+  border-style: solid;
+  border-radius: 15px;
+  padding: 30px;
+  background-color: aqua;
+}
+
+table {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 2.5px solid;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  width: 1%;
+}
+
+th {
+  border-bottom: 2.5px solid;
+}
+
+tr:hover {
+  background-color: #f39e9e;
+}
+
+tr:nth-child(even) {
+  background-color: #cd5d34;
+}

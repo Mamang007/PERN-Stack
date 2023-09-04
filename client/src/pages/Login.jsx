@@ -3,6 +3,7 @@ import { useState } from "react";
 import Layouts from "../components/Layouts";
 import { onLogin } from "../api/authApi";
 import state from "../store";
+import styles from "./index.module.css";
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -10,6 +11,7 @@ const Login = () => {
     password: "",
   });
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -29,21 +31,19 @@ const Login = () => {
   return (
     <Layouts>
       <form onSubmit={(e) => onSubmit(e)}>
-        <h1>Login</h1>
-        <div>
-          <label htmlFor="email">Email Address :</label>
+        <h1>LOGIN</h1>
+        <div className={styles.input}>
+          <label htmlFor="email">Email</label>
           <input onChange={(e) => onChange(e)} type="email" id="email" name="email" value={values.email} placeholder="Your Email Here..." required />
         </div>
-        <div>
-          <label htmlFor="password">Password :</label>
+        <div className={styles.input}>
+          <label htmlFor="password">Password</label>
           <input onChange={(e) => onChange(e)} type="password" id="password" name="password" value={values.password} placeholder="Your Password Here..." required />
         </div>
-
-        <div>
-          <p>{error}</p>
+        <div className={styles.alert}>
+          {error !== "" ? <p>{error}</p> : <p>{success}</p>}
+          <button type="submit">Submit</button>
         </div>
-
-        <button type="submit">Submit</button>
       </form>
     </Layouts>
   );

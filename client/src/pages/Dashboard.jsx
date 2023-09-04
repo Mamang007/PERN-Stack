@@ -1,6 +1,7 @@
 import Layouts from "../components/Layouts";
 import { useEffect, useState } from "react";
 import { fetchProtectedInfo } from "../api/authApi";
+import styles from "./index.module.css";
 
 const Dashboard = () => {
   const [protectedData, setProtectedData] = useState([]);
@@ -28,7 +29,7 @@ const Dashboard = () => {
           <h1>LOADING...</h1>
         </div>
       ) : (
-        <div>
+        <div className={styles.dashboard}>
           <h1>Dashboard</h1>
           <table>
             <thead>
